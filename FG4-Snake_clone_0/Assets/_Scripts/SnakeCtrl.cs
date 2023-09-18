@@ -13,6 +13,7 @@ public class SnakeCtrl : NetworkBehaviour
     private List<GameObject> bodyParts = new List<GameObject>();
     private List<Vector3> positionHistorys = new List<Vector3>();
 
+
     public int gap = 10;
 
     private void Start()

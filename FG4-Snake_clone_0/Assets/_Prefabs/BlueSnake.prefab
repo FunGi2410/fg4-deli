@@ -11,11 +11,12 @@ GameObject:
   - component: {fileID: 4713946947124849358}
   - component: {fileID: 4713946947124849357}
   - component: {fileID: 4713946947124849356}
-  - component: {fileID: -6601290552522530188}
   - component: {fileID: -8768848624171571035}
+  - component: {fileID: 7975172996414649604}
+  - component: {fileID: 3920907686079593476}
   m_Layer: 0
   m_Name: BlueSnake
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a34fe21a12a03249b4c71190d02bab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 1
   bodySpeed: 30
   steerSpeed: 180
   bodyPrefab: {fileID: 1568069664168794, guid: bcddf0fb8f960fe4dad489139e89c795, type: 3}
@@ -73,19 +74,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &-6601290552522530188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4713946947124849359}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a97b3d15e9f852b4d84bb66ccb678a94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cheapInterpolationTime: 0.1
 --- !u!114 &-8768848624171571035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +104,34 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &7975172996414649604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4713946947124849359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d2c976aef647cf49917e5c35c6b7a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length:
+    m_InternalValue: 2
+  bodyTailPrefab: {fileID: 1568069664168794, guid: bcddf0fb8f960fe4dad489139e89c795, type: 3}
+--- !u!65 &3920907686079593476
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4713946947124849359}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.4, z: 0.5}
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1001 &4713946945777351346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,7 +191,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 65977361069648744, guid: 6add784bd8ee0594b9283306b4f814eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6add784bd8ee0594b9283306b4f814eb, type: 3}
 --- !u!4 &4712184451128689030 stripped
 Transform:

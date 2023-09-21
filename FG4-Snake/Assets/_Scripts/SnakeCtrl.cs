@@ -13,21 +13,25 @@ public class SnakeCtrl : NetworkBehaviour
     private List<GameObject> bodyParts = new List<GameObject>();
     private List<Vector3> positionHistorys = new List<Vector3>();
 
+    NetworkVariable<ushort> length = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+
 
     public int gap = 10;
 
     private void Start()
     {
+       /* this.GrowSnake();
         this.GrowSnake();
         this.GrowSnake();
         this.GrowSnake();
-        this.GrowSnake();
-        this.GrowSnake();
+        this.GrowSnake();*/
     }
 
     public override void OnNetworkSpawn()
     {
         if (!IsOwner) enabled = false;
+
+        //if (!IsServer) this.length.OnValueChanged += this.LengthChanged;
     }
 
     private void Update()
@@ -39,7 +43,7 @@ public class SnakeCtrl : NetworkBehaviour
         float steerDirection = Input.GetAxis("Horizontal");
         this.transform.Rotate(Vector3.up * steerDirection * this.steerSpeed * Time.deltaTime);
 
-        // store position history
+        /*// store position history
         this.positionHistorys.Insert(0, this.transform.position);
 
         // move body parts
@@ -51,12 +55,26 @@ public class SnakeCtrl : NetworkBehaviour
             body.transform.position += moveDirection * this.bodySpeed * Time.deltaTime;
             body.transform.LookAt(point);
             index++;
-        }
+        }*/
+    }
+    
+   /* private void LengthChanged(ushort previousValue, ushort nextValue)
+    {
+        this.GrowSnake();
+    }
+
+
+    // Called by server
+    [ContextMenu("Add Length")]
+    private void AddLength()
+    {
+        this.length.Value += 1;
+        this.GrowSnake();
     }
 
     private void GrowSnake()
     {
         GameObject body = Instantiate(this.bodyPrefab);
         this.bodyParts.Add(body);
-    }
+    }*/
 }

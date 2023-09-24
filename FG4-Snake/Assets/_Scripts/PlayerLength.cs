@@ -11,6 +11,7 @@ public class PlayerLength : NetworkBehaviour
 
     private List<GameObject> tails;
 
+    [SerializeField]
     private Transform lastTail;
     //private Collider col;
 
@@ -18,11 +19,14 @@ public class PlayerLength : NetworkBehaviour
     {
         base.OnNetworkSpawn();
 
+        print("On network spawn");
+
         this.tails = new List<GameObject>();
         //this.col = GetComponent<Collider>();
         this.lastTail = transform;
 
         if(!IsServer) this.length.OnValueChanged += this.LengthChanged;
+
     }
 
 
@@ -42,7 +46,8 @@ public class PlayerLength : NetworkBehaviour
 
     private void InstantiateTail()
     {
-        GameObject tailObj = Instantiate(this.bodyTailPrefab, transform.position, Quaternion.identity);
+        print("Last tail " + this.lastTail.position);
+        GameObject tailObj = Instantiate(this.bodyTailPrefab, transform.position, this.lastTail.rotation);
         if(tailObj.TryGetComponent(out Tail tail))
         {
             tail.networkedOwner = transform;

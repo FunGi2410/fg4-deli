@@ -12,23 +12,33 @@ public class Tail : MonoBehaviour
     [SerializeField] private float moveStep = 10f;
 
     private Vector3 targetPos;
+    private Quaternion targetRot;
 
     bool check = true;
+    int tmp = 0;
 
     private void Update()
     {
-        if (check)
+        /*tmp += 1;
+        if (check && tmp >= 1000)
         {
-            print("Follow transform " + this.followTransform.position);
-            print("Follow transform forward " + this.followTransform.forward);
-            print("Vector forward " + Vector3.forward);
+            print("Follow trans pos " + this.followTransform.position);
+            print("Follow trans fow " + this.followTransform.forward * this.distance);
+            print("transform pos " + transform.position);
+
+            print("===================================");
+            print("Target pos 1 " + (this.followTransform.position - this.followTransform.forward * this.distance));
+            print("Target pos 2 " + ((this.followTransform.position - this.followTransform.forward * this.distance) + ((transform.position - this.targetPos) * this.delayTime)));
+
+
             check = false;
-        }
+        }*/
 
         this.targetPos = this.followTransform.position - this.followTransform.forward * this.distance;
-        //this.targetPos = this.followTransform.position - this.followTransform.forward;
-        this.targetPos += (transform.position - this.targetPos) * this.delayTime;
-        transform.position = Vector3.Lerp(transform.position, this.targetPos, Time.deltaTime * this.moveStep);
+        /*this.transform.rotation = this.followTransform.rotation;*/
+        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, this.followTransform.rotation, Time.deltaTime * 5);
 
+        //this.targetPos += (transform.position - this.targetPos) * this.delayTime;
+        transform.position = Vector3.Lerp(transform.position, this.targetPos, Time.deltaTime * this.moveStep);
     }
 }

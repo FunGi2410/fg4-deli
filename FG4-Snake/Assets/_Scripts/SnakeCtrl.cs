@@ -20,7 +20,10 @@ public class SnakeCtrl : NetworkBehaviour
 
     private void Start()
     {
-       /* this.GrowSnake();
+        /*this.GrowSnake();
+        this.GrowSnake();
+        this.GrowSnake();
+        this.GrowSnake();
         this.GrowSnake();
         this.GrowSnake();
         this.GrowSnake();
@@ -43,21 +46,21 @@ public class SnakeCtrl : NetworkBehaviour
         float steerDirection = Input.GetAxis("Horizontal");
         this.transform.Rotate(Vector3.up * steerDirection * this.steerSpeed * Time.deltaTime);
 
-        /*// store position history
+        // store position history
         this.positionHistorys.Insert(0, this.transform.position);
 
         // move body parts
         int index = 0;
-        foreach(var body in this.bodyParts)
+        foreach (var body in this.bodyParts)
         {
             Vector3 point = this.positionHistorys[Mathf.Min(index * gap, this.positionHistorys.Count - 1)];
             Vector3 moveDirection = point - body.transform.position;
             body.transform.position += moveDirection * this.bodySpeed * Time.deltaTime;
             body.transform.LookAt(point);
             index++;
-        }*/
+        }
     }
-    
+
    /* private void LengthChanged(ushort previousValue, ushort nextValue)
     {
         this.GrowSnake();
@@ -70,11 +73,11 @@ public class SnakeCtrl : NetworkBehaviour
     {
         this.length.Value += 1;
         this.GrowSnake();
-    }
+    }*/
 
     private void GrowSnake()
     {
         GameObject body = Instantiate(this.bodyPrefab);
         this.bodyParts.Add(body);
-    }*/
+    }
 }

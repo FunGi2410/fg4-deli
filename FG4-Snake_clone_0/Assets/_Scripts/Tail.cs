@@ -8,14 +8,14 @@ public class Tail : MonoBehaviour
     public Transform followTransform;
 
     [SerializeField] private float delayTime = 0.1f;
-    [SerializeField] private float distance = 0.3f;
-    [SerializeField] private float moveStep = 10f;
+    [SerializeField] private float distance = 0.1f;
+    [SerializeField] private float moveStep = 15f;
+    [SerializeField] private float rotSpeed = 10f;
 
     private Vector3 targetPos;
     private Quaternion targetRot;
 
-    bool check = true;
-    int tmp = 0;
+    
 
     private void Update()
     {
@@ -35,10 +35,7 @@ public class Tail : MonoBehaviour
         }*/
 
         this.targetPos = this.followTransform.position - this.followTransform.forward * this.distance;
-        /*this.transform.rotation = this.followTransform.rotation;*/
-        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, this.followTransform.rotation, Time.deltaTime * 5);
-
-        //this.targetPos += (transform.position - this.targetPos) * this.delayTime;
+        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, this.followTransform.rotation, Time.deltaTime * this.rotSpeed);
         transform.position = Vector3.Lerp(transform.position, this.targetPos, Time.deltaTime * this.moveStep);
     }
 }

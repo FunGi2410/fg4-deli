@@ -27,6 +27,12 @@ public class PlayerLength : NetworkBehaviour
 
         if(!IsServer) this.length.OnValueChanged += this.LengthChanged;
 
+       /* this.AddLength();
+        this.AddLength();
+        this.AddLength();
+        this.AddLength();
+        this.AddLength();*/
+
     }
 
 

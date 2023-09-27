@@ -49,9 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a34fe21a12a03249b4c71190d02bab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSpeed: 2
   bodySpeed: 30
-  steerSpeed: 180
+  steerSpeed: 250
   bodyPrefab: {fileID: 1568069664168794, guid: bcddf0fb8f960fe4dad489139e89c795, type: 3}
   gap: 20
 --- !u!114 &4713946947124849356
@@ -119,6 +119,7 @@ MonoBehaviour:
   length:
     m_InternalValue: 2
   bodyTailPrefab: {fileID: 1568069664168794, guid: bcddf0fb8f960fe4dad489139e89c795, type: 3}
+  lastTail: {fileID: 0}
 --- !u!65 &3920907686079593476
 BoxCollider:
   m_ObjectHideFlags: 0

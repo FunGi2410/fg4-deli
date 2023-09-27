@@ -5,6 +5,7 @@ using Unity.Netcode;
 
 public class Food : NetworkBehaviour
 {
+    public GameObject prefab;
     private void OnTriggerEnter(Collider col)
     {
         if (!col.CompareTag("Player")) return;
@@ -15,6 +16,8 @@ public class Food : NetworkBehaviour
         {
             playerLength.AddLength();
         }
+
+        NetworkObjectPool.Singleton.ReturnNetworkObject(NetworkObject, prefab);
 
         NetworkObject.Despawn();
     }

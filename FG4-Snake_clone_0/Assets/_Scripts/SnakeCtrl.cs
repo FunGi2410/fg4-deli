@@ -10,6 +10,7 @@ public class SnakeCtrl : NetworkBehaviour
     public float steerSpeed = 180f;
 
     public GameObject bodyPrefab;
+    [SerializeField]
     private List<GameObject> bodyParts = new List<GameObject>();
     private List<Vector3> positionHistorys = new List<Vector3>();
 
@@ -40,16 +41,20 @@ public class SnakeCtrl : NetworkBehaviour
     private void Update()
     {
         // move forward
-        this.transform.position += transform.forward * this.moveSpeed * Time.deltaTime;
+        this.MoveForward();
 
         // steering
-        float steerDirection = Input.GetAxis("Horizontal");
-        this.transform.Rotate(Vector3.up * steerDirection * this.steerSpeed * Time.deltaTime);
+        this.Steer();
 
         // store position history
-        this.positionHistorys.Insert(0, this.transform.position);
+        //this.positionHistorys.Insert(0, this.transform.position);
 
         // move body parts
+        //this.MoveBody();
+    }
+
+    private void MoveBody()
+    {
         int index = 0;
         foreach (var body in this.bodyParts)
         {
@@ -59,6 +64,24 @@ public class SnakeCtrl : NetworkBehaviour
             body.transform.LookAt(point);
             index++;
         }
+    }
+
+    private void Steer()
+    {
+        float steerDirection = Input.GetAxis("Horizontal");
+        this.transform.Rotate(Vector3.up * steerDirection * this.steerSpeed * Time.deltaTime);
+    }
+
+    private void MoveForward()
+    {
+        // move when click space bar
+        if (Input.GetKey(KeyCode.Space))
+        {
+            this.transform.position += transform.forward * this.moveSpeed * Time.deltaTime;
+        }
+
+        /*// auto move 
+        this.transform.position += transform.forward * this.moveSpeed * Time.deltaTime;*/
     }
 
    /* private void LengthChanged(ushort previousValue, ushort nextValue)
